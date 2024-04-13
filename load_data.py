@@ -23,4 +23,8 @@ def load_data(directory):
     # Normalize the image data to 0-1
     X /= 255.0
     
-    return X, y
+    X_expanded = np.expand_dims(X, axis=-1)
+
+    # X_resized = np.array([cv2.resize(img, (64, 64)) for img in X]).reshape(-1, 64, 64, 1)
+
+    return X_expanded, y
