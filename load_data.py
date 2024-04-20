@@ -1,6 +1,7 @@
 import os
 import cv2
 import numpy as np
+from skimage.filters import sobel
 
 def load_data(directory):
     X = []
@@ -13,6 +14,9 @@ def load_data(directory):
             if file.endswith(".bmp"):
                 filepath = os.path.join(subdir, file)
                 image = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)
+
+                image = image - sobel(image)
+                
                 X.append(image)
                 y.append(label)
         label += 1
